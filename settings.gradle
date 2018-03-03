@@ -1,0 +1,10 @@
+rootProject.name = 'fetcher'
+
+/*
+    To include this project as composite build add the following in the settings.gradle file in the sibling project:
+*/
+/*
+if(file("../fetcher").exists()) {
+    includeBuild "../fetcher"
+}
+*/
