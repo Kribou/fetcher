@@ -1,5 +1,5 @@
 import com.hanquez.feedfetcher.api.fetcher.FeedFetcher;
-import com.hanquez.feedfetcher.SyndFeedConverter;
+import com.hanquez.feedfetcher.impl.converter.SyndFeedConverter;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
