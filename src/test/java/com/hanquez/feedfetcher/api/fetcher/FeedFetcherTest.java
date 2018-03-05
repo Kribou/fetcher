@@ -1,4 +1,5 @@
-import com.hanquez.feedfetcher.api.fetcher.FeedFetcher;
+package com.hanquez.feedfetcher.api.fetcher;
+
 import com.hanquez.feedfetcher.impl.converter.SyndFeedConverter;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
