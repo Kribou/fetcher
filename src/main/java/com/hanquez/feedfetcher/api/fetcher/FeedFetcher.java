@@ -1,5 +1,6 @@
-package com.hanquez.feedfetcher;
+package com.hanquez.feedfetcher.api.fetcher;
 
+import com.hanquez.feedfetcher.api.converter.FeedConverter;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
@@ -10,7 +11,6 @@ import java.net.URL;
 
 public class FeedFetcher {
 
-
     public static SyndFeed getFeed(String url) throws IOException, FeedException {
         URL feedUrl = new URL(url);
         SyndFeedInput input = new SyndFeedInput();
@@ -18,4 +18,8 @@ public class FeedFetcher {
         return feed;
     }
 
+    public static <T> T getConvertedFeed(String url, FeedConverter<T> converter) throws IOException, FeedException {
+        SyndFeed feed = FeedFetcher.getFeed(url);
+        return converter.convert(feed);
+    }
 }

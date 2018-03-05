@@ -16,12 +16,12 @@ ext {
 
 dependencies {
     // https://mvnrepository.com/artifact/com.rometools/rome
-    compile group: 'com.rometools', name: 'rome', version: rometoolsVersion
+    implementation group: 'com.rometools', name: 'rome', version: rometoolsVersion
     // https://mvnrepository.com/artifact/com.rometools/rome-modules
-    compile group: 'com.rometools', name: 'rome-modules', version: rometoolsVersion
+    implementation group: 'com.rometools', name: 'rome-modules', version: rometoolsVersion
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
-    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
 
-    testCompile group: 'junit', name: 'junit', version: junitVersion
+    testImplementation group: 'junit', name: 'junit', version: junitVersion
 
 }
