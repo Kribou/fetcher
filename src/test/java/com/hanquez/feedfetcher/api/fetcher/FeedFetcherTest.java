@@ -6,14 +6,16 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import static io.github.jsonSnapshot.SnapshotMatcher.*;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -26,19 +28,28 @@ public class FeedFetcherTest {
 
     @BeforeClass
     public static void beforeAll() throws IOException, FeedException {
+        //Start json-snapshot
+        start();
+
         //Get the feed by FeedFetcher API
         feed = FeedFetcher.getFeed(NIPTECH);
         convertedFeed = FeedFetcher.getConvertedFeed(NIPTECH, syndFeedConverter);
     }
 
-    @Ignore
+    @AfterClass
+    public static void afterAll() {
+        validateSnapshots();
+    }
+
     @Test
     public void getFeedFromRomeTools() {
         try {
             URL feedUrl = new URL(NIPTECH);
             SyndFeedInput input = new SyndFeedInput();
             SyndFeed feed = input.build(new XmlReader(feedUrl));
-            assertTrue("No entries found", feed.getEntries().size() > 0);
+            List<SyndEntry> entries = feed.getEntries();
+            assertNotNull(entries);
+            expect(entries.subList(0,5).stream().map(SyndEntry::getTitle).collect(Collectors.toList())).toMatchSnapshot();
         } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("ERROR: " + ex.getMessage());
@@ -48,11 +59,9 @@ public class FeedFetcherTest {
     @Test
     public void getFeedEntries() {
         List<SyndEntry> entries = feed.getEntries();
+        assertNotNull(entries);
         assertTrue("No entries found", entries.size() > 0);
-    }
-
-    @Test
-    public void getItemsByFetcherAPI() {
+        expect(entries.subList(0,5).stream().map(SyndEntry::getTitle).collect(Collectors.toList())).toMatchSnapshot();
     }
 
     @Test
@@ -60,13 +69,7 @@ public class FeedFetcherTest {
         String description = feed.getDescription();
         assertNotNull("No description found", description);
         assertTrue("Empty description", !description.isEmpty());
-    }
-
-    @Test
-    public void showEntriesContent() {
-        List<SyndEntry> entries = feed.getEntries();
-        System.out.println("entries = " + entries);
-        System.out.println(entries.size());
+        expect(description).toMatchSnapshot();
     }
 
     @Test
