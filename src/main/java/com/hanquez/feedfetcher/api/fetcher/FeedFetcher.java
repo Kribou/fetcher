@@ -11,6 +11,10 @@ import java.net.URL;
 
 public class FeedFetcher {
 
+    private FeedFetcher() {
+
+    }
+
     public static SyndFeed getFeed(String url) throws IOException, FeedException {
         URL feedUrl = new URL(url);
         SyndFeedInput input = new SyndFeedInput();

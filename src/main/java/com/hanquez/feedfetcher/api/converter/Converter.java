@@ -1,6 +1,11 @@
 package com.hanquez.feedfetcher.api.converter;
 
-public interface Converter<DATA, CONVERTEDDATA> {
+/**
+ * A converter from D type object to C type object
+ * @param <D> type of the Data object to be converted
+ * @param <C> type of the Converted object
+ */
+public interface Converter<D, C> {
 
-    CONVERTEDDATA convert(DATA data);
+    C convert(D data);
 }
