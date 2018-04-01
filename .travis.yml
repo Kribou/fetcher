@@ -3,4 +3,4 @@ language: java
 jdk:
   - oraclejdk8
 
-after_success: ./gradlew sonarqube -Dsonar.organization=$organization -Dsonar.host.url=$host_url -Dsonar.login=$login
+after_success: ./gradlew sonarqube -Dsonar.organization=$organization -Dsonar.host.url=$host_url -Dsonar.login=$login --rerun-tasks
