@@ -1,25 +1,3 @@
 com.hanquez.feedfetcher.api.fetcher.FeedFetcherTest.getDescriptionByFeedFetcherAPI=[
   "Le podcast sur l\u0027actualité tech, les startups avec une bonne dose d\u0027inspiration pour se motiver."
 ]
-
-
-com.hanquez.feedfetcher.api.fetcher.FeedFetcherTest.getFeedEntries=[
-  [
-    "Niptech 336 – Priceless James",
-    "Niptech 335 – La Bulle Niptech",
-    "Niptech 334 – #CES2018",
-    "Niptech 333 – This kid in tech",
-    "Niptech 332 – Le bonheur est dans la tech"
-  ]
-]
-
-
-com.hanquez.feedfetcher.api.fetcher.FeedFetcherTest.getFeedFromRomeTools=[
-  [
-    "Niptech 336 – Priceless James",
-    "Niptech 335 – La Bulle Niptech",
-    "Niptech 334 – #CES2018",
-    "Niptech 333 – This kid in tech",
-    "Niptech 332 – Le bonheur est dans la tech"
-  ]
-]

@@ -13,7 +13,6 @@ import org.junit.Test;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static io.github.jsonSnapshot.SnapshotMatcher.*;
 import static org.junit.Assert.assertNotNull;
@@ -49,7 +48,6 @@ public class FeedFetcherTest {
             SyndFeed feed = input.build(new XmlReader(feedUrl));
             List<SyndEntry> entries = feed.getEntries();
             assertNotNull(entries);
-            expect(entries.subList(0,5).stream().map(SyndEntry::getTitle).collect(Collectors.toList())).toMatchSnapshot();
         } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("ERROR: " + ex.getMessage());
@@ -61,7 +59,6 @@ public class FeedFetcherTest {
         List<SyndEntry> entries = feed.getEntries();
         assertNotNull(entries);
         assertTrue("No entries found", entries.size() > 0);
-        expect(entries.subList(0,5).stream().map(SyndEntry::getTitle).collect(Collectors.toList())).toMatchSnapshot();
     }
 
     @Test
