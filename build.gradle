@@ -30,3 +30,10 @@ dependencies {
     testImplementation group: 'junit', name: 'junit', version: junitVersion
     testImplementation group: 'io.github.json-snapshot', name: 'json-snapshot', version: jsonSnapshotVersion
 }
+
+test {
+    testLogging {
+        exceptionFormat "full"
+    }
+    outputs.upToDateWhen { false }
+}
