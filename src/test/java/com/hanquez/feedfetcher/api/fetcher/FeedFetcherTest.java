@@ -67,10 +67,4 @@ public class FeedFetcherTest {
         SnapshotMatcher.expect(description).toMatchSnapshot();
     }
 
-    @Test
-    public void getConvertedFeed() {
-        List<SyndEntry> entries = convertedFeed.getEntries().subList(0, 1);
-        System.out.println("entries = " + entries);
-        System.out.println(entries.size());
-    }
 }
