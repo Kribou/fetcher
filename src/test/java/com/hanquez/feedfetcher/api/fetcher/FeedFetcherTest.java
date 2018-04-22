@@ -6,17 +6,15 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import io.github.jsonSnapshot.SnapshotMatcher;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-
-import static io.github.jsonSnapshot.SnapshotMatcher.*;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class FeedFetcherTest {
 
@@ -28,7 +26,7 @@ public class FeedFetcherTest {
     @BeforeClass
     public static void beforeAll() throws IOException, FeedException {
         //Start json-snapshot
-        start();
+        SnapshotMatcher.start();
 
         //Get the feed by FeedFetcher API
         feed = FeedFetcher.getFeed(NIPTECH);
@@ -37,7 +35,7 @@ public class FeedFetcherTest {
 
     @AfterClass
     public static void afterAll() {
-        validateSnapshots();
+        SnapshotMatcher.validateSnapshots();
     }
 
     @Test
@@ -47,7 +45,7 @@ public class FeedFetcherTest {
             SyndFeedInput input = new SyndFeedInput();
             SyndFeed feed = input.build(new XmlReader(feedUrl));
             List<SyndEntry> entries = feed.getEntries();
-            assertNotNull(entries);
+            Assert.assertNotNull(entries);
         } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("ERROR: " + ex.getMessage());
@@ -57,16 +55,16 @@ public class FeedFetcherTest {
     @Test
     public void getFeedEntries() {
         List<SyndEntry> entries = feed.getEntries();
-        assertNotNull(entries);
-        assertTrue("No entries found", entries.size() > 0);
+        Assert.assertNotNull(entries);
+        Assert.assertTrue("No entries found", entries.size() > 0);
     }
 
     @Test
     public void getDescriptionByFeedFetcherAPI() {
         String description = feed.getDescription();
-        assertNotNull("No description found", description);
-        assertTrue("Empty description", !description.isEmpty());
-        expect(description).toMatchSnapshot();
+        Assert.assertNotNull("No description found", description);
+        Assert.assertTrue("Empty description", !description.isEmpty());
+        SnapshotMatcher.expect(description).toMatchSnapshot();
     }
 
     @Test
