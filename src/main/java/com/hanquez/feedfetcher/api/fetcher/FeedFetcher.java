@@ -25,7 +25,6 @@ public class FeedFetcher {
 
     public static <T> T getConvertedFeed(String url, FeedConverter<T> converter) throws IOException, FeedException {
         SyndFeed feed = FeedFetcher.getFeed(url);
-        feed.setUri(url);
         return converter.convert(feed);
     }
 }
